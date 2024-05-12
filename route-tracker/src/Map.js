@@ -6,11 +6,13 @@ import { useState, useEffect } from "react";
 
 
 function Map() {
-  
-  const [location, setLocation] = useState([0, 0]);
 
+  let [location, setLocation] = useState(null);
+  
+  //console.log(location);
   useEffect(() => {
     getCurrentPosition();
+    
   }, []);
 
   function getCurrentPosition() {
@@ -35,6 +37,7 @@ function Map() {
 
   return (
     <div className="App">
+      {location && (
       <MapContainer center={location} zoom={13} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -46,6 +49,7 @@ function Map() {
           </Popup>
         </Marker>
       </MapContainer>
+      )};
     </div>
   );
 }
